@@ -17,11 +17,154 @@ datasource db {
 
 // テーブルを以下に書く
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  userIcon  String?
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String
+  userIcon String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // 接続を定義
+  forms         Form[]
+  storeLikes    StoreLike[]
+  storeSupports StoreSupport[]
+  comments      Comment[]
+}
+
+model Store {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  link        String?
+  address     String?
+
+  genreId      Int // 外部キー
+  genre        Genre      @relation(fields: [genreId], references: [id], onDelete: Cascade) // 制約
+  storeImageId Int
+  storeImage   StoreImage @relation(fields: [storeImageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  recommends    Recommend[]
+  storeLikes    StoreLike[]
+  storeSupports StoreSupport[]
+  comments      Comment[]
+}
+
+model Comment {
+  id      Int    @id @default(autoincrement())
+  message String
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  storeId Int
+  store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Genre {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 接続を定義
+  stores Store[]
+  forms  Form[]
+}
+
+model StoreImage {
+  id   Int    @id @default(autoincrement())
+  path String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  stores Store[]
+}
+
+model Form {
+  id      Int     @id @default(autoincrement())
+  name    String
+  menu    String?
+  address String?
+
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  genreId     Int
+  genre       Genre     @relation(fields: [genreId], references: [id], onDelete: Cascade)
+  formImageId Int
+  formImage   FormImage @relation(fields: [formImageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FormImage {
+  id   Int    @id @default(autoincrement())
+  path String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  forms Form[]
+}
+
+model Recommend {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  isShow      Boolean @default(true)
+
+  storeId          Int
+  store            Store          @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  recommendImageId Int
+  recommendImage   RecommendImage @relation(fields: [recommendImageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RecommendImage {
+  id   Int    @id @default(autoincrement())
+  path String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  recommends Recommend[]
+}
+
+// 中間テーブル
+model StoreLike {
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  storeId Int
+  store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, storeId])
+}
+
+model StoreSupport {
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  storeId Int
+  store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, storeId])
 }
