@@ -17,10 +17,10 @@ datasource db {
 
 // テーブルを以下に書く
 model User {
-  id       Int     @id @default(autoincrement())
+  id       String  @id // supabaseのuuidを使用する。
   name     String
   email    String  @unique
-  password String
+  // password String supabaseでパスワードは管理
   userIcon String?
 
   createdAt DateTime @default(now())
@@ -58,8 +58,8 @@ model Comment {
   id      Int    @id @default(autoincrement())
   message String
 
-  userId Int
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   storeId Int
   store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
@@ -96,7 +96,7 @@ model Form {
   menu    String?
   address String?
 
-  userId      Int
+  userId      String
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   genreId     Int
   genre       Genre     @relation(fields: [genreId], references: [id], onDelete: Cascade)
@@ -144,8 +144,8 @@ model RecommendImage {
 
 // 中間テーブル
 model StoreLike {
-  userId Int
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   storeId Int
   store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
@@ -157,8 +157,8 @@ model StoreLike {
 }
 
 model StoreSupport {
-  userId Int
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   storeId Int
   store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
