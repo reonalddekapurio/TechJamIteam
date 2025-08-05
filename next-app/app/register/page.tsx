@@ -34,7 +34,7 @@ export default function Register() {
         const data = await res.json();
         console.log(data);
 
-        router.push("/");
+        router.push("/home");
     } catch (error) {
         console.log(error);
     }
@@ -45,6 +45,7 @@ export default function Register() {
 
   return (
     <main className="flex justify-center items-center h-screen">
+      <button onClick={() => router.push("/login")}>ログイン画面へ</button>
       <form action="" className="p-4 bg-amber-200 rounded-lg shadow-2xl" onSubmit={handleSubmit}>
         <h1>ユーザー名</h1>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="p-4 bg-white rounded-2xl"/>
