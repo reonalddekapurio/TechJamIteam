@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@prisma/client": "^6.13.0",
@@ -22,6 +23,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
     "prisma": "^6.13.0",
     "tailwindcss": "^4",
     "typescript": "^5"

@@ -9,5 +9,5 @@ export default function Login() {
       </div>
       <UserLogin />
     </main>
-  )
+  );
 }

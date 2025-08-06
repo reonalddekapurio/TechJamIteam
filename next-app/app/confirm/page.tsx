@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -16,12 +16,12 @@ export default function Confirm() {
 
   useEffect(() => {
     // セッションストレージからデータを取得
-    const storedData = sessionStorage.getItem('registerData');
+    const storedData = sessionStorage.getItem("registerData");
     if (storedData) {
       setFormData(JSON.parse(storedData));
     } else {
       // データがない場合は登録ページにリダイレクト
-      router.push('/register');
+      router.push("/register");
     }
   }, [router]);
 
@@ -35,7 +35,7 @@ export default function Confirm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (!res.ok) {
@@ -46,7 +46,7 @@ export default function Confirm() {
       console.log(data);
 
       // データをクリア
-      sessionStorage.removeItem('registerData');
+      sessionStorage.removeItem("registerData");
       // 成功後の画面へリダイレクト
       router.push("/");
     } catch (error) {
@@ -57,7 +57,7 @@ export default function Confirm() {
   };
 
   const handleBack = () => {
-    router.push('/register');
+    router.push("/register");
   };
 
   if (!formData) {
@@ -68,25 +68,31 @@ export default function Confirm() {
     <main className="flex justify-center items-center h-screen">
       <div className="p-4 bg-amber-200 rounded-lg shadow-2xl max-w-md w-full">
         <h1 className="text-2xl font-bold mb-6">登録内容の確認</h1>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="space-y-4 mb-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">ユーザー名</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                ユーザー名
+              </label>
               <p className="p-4 bg-white rounded-2xl">{formData.name}</p>
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">メールアドレス</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                メールアドレス
+              </label>
               <p className="p-4 bg-white rounded-2xl">{formData.email}</p>
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">パスワード</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                パスワード
+              </label>
               <p className="p-4 bg-white rounded-2xl">••••••••</p>
             </div>
           </div>
-          
+
           <div className="flex space-x-4">
             <button
               type="button"

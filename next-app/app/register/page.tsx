@@ -6,5 +6,5 @@ export default function Register() {
     <main className="flex justify-center items-center h-screen">
       <UserRegister />
     </main>
-  )
+  );
 }
