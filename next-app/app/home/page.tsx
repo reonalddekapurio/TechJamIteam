@@ -8,11 +8,11 @@ export default function Home() {
 
   const handleRegister = useCallback(() => {
     router.push("/register");
-  },[router])
+  }, [router]);
 
   const handleLogin = useCallback(() => {
     router.push("/login");
-  },[router])
+  }, [router]);
 
   return (
     <main className="flex flex-col items-center justify-center h-screen">
@@ -21,10 +21,16 @@ export default function Home() {
         <button className="text-black border-2 border-solid border-[#8B4158] p-4 rounded-2xl">
           Googleでログイン
         </button>
-        <button className="text-black border-2 border-solid border-[#8B4158] p-4 rounded-2xl" onClick={handleLogin}>
+        <button
+          className="text-black border-2 border-solid border-[#8B4158] p-4 rounded-2xl"
+          onClick={handleLogin}
+        >
           メールアドレスでログイン
         </button>
-        <button className="text-white bg-[#8B4158] p-4 rounded-2xl" onClick={handleRegister}>
+        <button
+          className="text-white bg-[#8B4158] p-4 rounded-2xl"
+          onClick={handleRegister}
+        >
           新規ユーザー登録
         </button>
       </div>
