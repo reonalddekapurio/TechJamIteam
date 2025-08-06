@@ -1,10 +1,11 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
+
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
-  })
+  });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,20 +13,22 @@ export async function updateSession(request: NextRequest) {
     {
       cookies: {
         getAll() {
-          return request.cookies.getAll()
+          return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
+          cookiesToSet.forEach(({ name, value, options }) =>
+            request.cookies.set(name, value),
+          );
           supabaseResponse = NextResponse.next({
             request,
-          })
+          });
           cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          )
+            supabaseResponse.cookies.set(name, value, options),
+          );
         },
       },
-    }
-  )
+    },
+  );
 
   // Do not run code between createServerClient and
   // supabase.auth.getUser(). A simple mistake could make it very hard to debug
@@ -35,34 +38,36 @@ export async function updateSession(request: NextRequest) {
 
   const {
     data: { user },
-  } = await supabase.auth.getUser()
+  } = await supabase.auth.getUser();
+
+  // API Routesの認証チェックをスキップ（テスト用）
+  // if (request.nextUrl.pathname.startsWith('/api/')) {
+  //   return supabaseResponse
+  // }
 
   // 登録用apiは認証チェックをスキップ
-  if (request.nextUrl.pathname.startsWith('/api/auth/register')) {
-    return supabaseResponse
+  if (request.nextUrl.pathname.startsWith("/api/auth/register")) {
+    return supabaseResponse;
   }
 
+  // APIルートで未認証の場合は401を返す
+  if (request.nextUrl.pathname.startsWith("/api/") && !user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   // 未認証ユーザーでもアクセス可能なパス
-  const publicPaths = [
-    '/register',
-    '/login', 
-    '/',
-  ];
-  
-  // 未認証ユーザーでもアクセス可能なパスかどうかを判定
-  const isPublicPath = publicPaths.some(path => 
-    request.nextUrl.pathname.startsWith(path)
-  ) 
+  const publicPaths = ["/register", "/login", "/confirm", "/home"];
 
-  if (
-    !user &&
-    !isPublicPath
-  ) {
+  // 未認証ユーザーでもアクセス可能なパスかどうかを判定
+  const isPublicPath = publicPaths.some((path) =>
+    request.nextUrl.pathname.startsWith(path),
+  );
+
+  if (!user && !isPublicPath) {
     // no user, potentially respond by redirecting the user to the login page
     // 認証に失敗した時のリダイレクト
-    const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
+    const url = request.nextUrl.clone();
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
@@ -78,5 +83,5 @@ export async function updateSession(request: NextRequest) {
   // If this is not done, you may be causing the browser and server to go out
   // of sync and terminate the user's session prematurely!
 
-  return supabaseResponse
+  return supabaseResponse;
 }
