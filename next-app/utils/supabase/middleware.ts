@@ -34,19 +34,33 @@ export async function updateSession(request: NextRequest) {
   // IMPORTANT: DO NOT REMOVE auth.getUser()
 
   const {
-    data: { user },
+    data: { user }
   } = await supabase.auth.getUser()
 
+    // API Routesの認証チェックをスキップ（テスト用）
+    // if (request.nextUrl.pathname.startsWith('/api/')) {
+    //   return supabaseResponse
+    // }
+
+    
   // 登録用apiは認証チェックをスキップ
   if (request.nextUrl.pathname.startsWith('/api/auth/register')) {
     return supabaseResponse
   }
 
+    // APIルートで未認証の場合は401を返す
+    if (request.nextUrl.pathname.startsWith('/api/') && !user) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      )
+    }
   // 未認証ユーザーでもアクセス可能なパス
   const publicPaths = [
     '/register',
     '/login', 
-    '/',
+    '/confirm',
+    '/home',
   ];
   
   // 未認証ユーザーでもアクセス可能なパスかどうかを判定
