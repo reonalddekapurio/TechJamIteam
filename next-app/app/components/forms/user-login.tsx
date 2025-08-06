@@ -55,6 +55,7 @@ export default function UserLogin() {
               メールアドレス
             </label>
             <input
+              id="email"
               type="email"
               {...register("email", {
                 required: "メールアドレスは必須です",
@@ -77,6 +78,7 @@ export default function UserLogin() {
             </label>
             <input
               type="password"
+              id="password"
               {...register("password", {
                 required: "パスワードは必須です",
                 minLength: {
