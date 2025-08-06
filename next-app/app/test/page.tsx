@@ -3,13 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { FooterNavItem } from "@/components/shared/FooterNavItem";
-import { SearchBar } from "@/components/shared/SearchBar";
+import { ShopCard } from "@/components/shared/ShopCard";
 
 // export default function Test() {
-//   return (
-//     <>
-//   <SearchBar/>
-//   </>
-//   )
-// }
+//     return (
+//                 <>
+//                     <ShopCard/>
+//                 </>
+//             )
+//         }
