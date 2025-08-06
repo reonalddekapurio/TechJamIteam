@@ -1,4 +1,7 @@
 "use client";
+import { useAuth } from "@/hooks/useAuth";
+import LogoutButton from "@/app/components/buttons/LogoutButton";
+import {FooterNavItem} from "@/components/shared/FooterNavItem"
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import Logo from "../components/common/Logo";

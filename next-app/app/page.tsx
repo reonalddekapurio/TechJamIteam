@@ -1,6 +1,11 @@
 "use client";
+
+import { useRouter } from "next/navigation";
+import LogoutButton from "@/app/components/buttons/LogoutButton";
+import Image from "next/image";
+import { useCallback } from "react";
+import Logo from "@/app/components/common/Logo";
 import { useAuth } from "@/hooks/useAuth";
-import LogoutButton from "./components/buttons/LogoutButton";
 
 export default function Home() {
   const user = useAuth();
