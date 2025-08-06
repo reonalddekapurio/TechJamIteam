@@ -1,7 +1,7 @@
 "use client";
 import { useAuth } from "@/hooks/useAuth";
-import LogoutButton from "../components/buttons/LogoutButton";
-
+import LogoutButton from "@/app/components/buttons/LogoutButton";
+import {FooterNavItem} from "@/components/shared/FooterNavItem"
 export default function Home() {
   const user = useAuth();
   return (
@@ -10,6 +10,11 @@ export default function Home() {
       <h2>ログインしているメールアドレス{user?.email}</h2>
       <h2>ログインしているユーザーのアイコン{user?.userIcon || "なし"}</h2>
       <LogoutButton />
+
+      <>
+                  <FooterNavItem/>
+              </>
     </div>
+    
   );
 }

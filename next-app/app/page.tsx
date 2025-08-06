@@ -1,9 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
-import LogoutButton from "./components/buttons/LogoutButton";
+import LogoutButton from "@/app/components/buttons/LogoutButton";
 import Image from "next/image";
 import { useCallback } from "react";
-import Logo from "./components/common/Logo";
+import Logo from "@/app/components/common/Logo";
 
 export default function Home() {
   const router = useRouter();
