@@ -43,6 +43,7 @@ export default function UserRegister() {
               required: "ユーザー名は必須です",
             })}
             className="p-4 bg-white rounded-2xl w-full"
+            id="name"
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -55,6 +56,7 @@ export default function UserRegister() {
           </label>
           <input
             type="email"
+            id="email"
             {...register("email", {
               required: "メールアドレスは必須です",
               pattern: {
