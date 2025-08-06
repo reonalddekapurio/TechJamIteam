@@ -2,6 +2,8 @@
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Logo from "../components/common/Logo";
+
 export default function Login() {
   const [email , setEmail] = useState<string>("");
   const [password , setPassword] = useState<string>("");
@@ -22,7 +24,7 @@ export default function Login() {
         if(error) {
             throw new Error(error.message);
         }
-        router.push('/');
+        router.push('/home');
         setIsLoading(false);
      } catch (error) {
         console.log(error);
@@ -34,7 +36,11 @@ export default function Login() {
 
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
+    <main className="flex flex-col items-center h-screen">
+      <div className="my-10">
+        <Logo />
+      </div>
+      <button onClick={() => router.push("/register")}>ユーザー登録</button>
       <h1>ログイン</h1>
       <form onSubmit={handleSubmit} className="p-4 bg-yellow-50">
         <h2>メールアドレス</h2>

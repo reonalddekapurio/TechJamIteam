@@ -46,6 +46,7 @@ export async function updateSession(request: NextRequest) {
   const publicPaths = [
     '/register',
     '/login', 
+    '/',
   ];
   
   // 未認証ユーザーでもアクセス可能なパスかどうかを判定
