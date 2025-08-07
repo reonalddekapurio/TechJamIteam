@@ -3,12 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export function ShopCard() {
+export function ShopCard({ImageType}:{ImageType:string}) {
     return (
             <div className="w-[190px] h-auto p-2  gap-2 rounded-lg">
                 <div>
                 <Image className="rounded-lg"
-                    src="/shop-demo.svg"
+                    src={`${ImageType === "shop1" ? "/shop-demo.svg" : "/shop-demo-nagomi.svg"}`}
                     alt="shop"
                     width={165}
                     height={165}
