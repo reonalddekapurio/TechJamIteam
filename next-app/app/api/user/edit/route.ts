@@ -10,27 +10,31 @@ export async function POST(req: NextRequest) {
     const name = formData.get("name") as string; // 文字列として取得
     const userIcon = formData.get("userIcon") as File | null; // nullも許容
 
-    console.log('Received data:', { name, userIcon: userIcon ? 'File exists' : 'No file' });
+    console.log("Received data:", {
+      name,
+      userIcon: userIcon ? "File exists" : "No file",
+    });
 
     // ユーザー情報取得
     const supabase = await createClient();
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
     // 認証エラー
     if (error) {
-      console.error('Auth error:', error);
-      return NextResponse.json(
-        { message: error.message },
-        { status: 401 },
-      );
+      console.error("Auth error:", error);
+      return NextResponse.json({ message: error.message }, { status: 401 });
     }
-    
+
     // ユーザーID取得
     const userId = user?.id;
     // ユーザーIDが取得できない場合
     if (!userId) {
       return NextResponse.json(
         { message: "ユーザーIDが取得できませんでした" },
-        { status: 400 });
+        { status: 400 },
+      );
     }
 
     // アイコンのパスを指定
@@ -38,21 +42,23 @@ export async function POST(req: NextRequest) {
     // storageに画像を追加
     if (userIcon) {
       try {
-        const originalName = userIcon.name || 'image.jpg';
+        const originalName = userIcon.name || "image.jpg";
         const fileName = `${userId}/${Date.now()}_${originalName}`;
-        
+
         const { data, error: uploadError } = await supabase.storage
           .from("image") // バケット名
           .upload(fileName, userIcon); // ファイルのpathを指定する
 
         if (uploadError) {
           return NextResponse.json(
-            { message: `画像のアップロードに失敗しました: ${uploadError.message}` },
+            {
+              message: `画像のアップロードに失敗しました: ${uploadError.message}`,
+            },
             { status: 500 },
           );
         }
 
-        console.log('Upload successful:', data);
+        console.log("Upload successful:", data);
 
         // 画像のURLを取得
         const { data: urlData } = supabase.storage
@@ -61,7 +67,9 @@ export async function POST(req: NextRequest) {
         userIconUrl = urlData.publicUrl; // 画像のurlを追加
       } catch (uploadException) {
         return NextResponse.json(
-          { message: `画像のアップロードでエラーが発生しました: ${uploadException}` },
+          {
+            message: `画像のアップロードでエラーが発生しました: ${uploadException}`,
+          },
           { status: 500 },
         );
       }
@@ -75,8 +83,8 @@ export async function POST(req: NextRequest) {
         },
         data: {
           name,
-          ...(userIconUrl && { userIcon: userIconUrl })
-        }
+          ...(userIconUrl && { userIcon: userIconUrl }),
+        },
       });
     } catch (dbError) {
       return NextResponse.json(

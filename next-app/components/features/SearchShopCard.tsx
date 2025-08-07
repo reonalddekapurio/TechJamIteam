@@ -6,8 +6,11 @@ import Image from "next/image";
 export function SearchShopCard({ ImageType }: { ImageType: string }) {
   return (
     <div className="w-[390px] h-auto p-2  gap-4 rounded-3xl ">
-        {(ImageType === "shop1") ? <p className="text[12px] font-bold text-[#8B4158]">カフェドエピ</p> : <p className="text[12px] font-bold text-[#8B4158]">なごみ</p>
-        }
+      {ImageType === "shop1" ? (
+        <p className="text[12px] font-bold text-[#8B4158]">カフェドエピ</p>
+      ) : (
+        <p className="text[12px] font-bold text-[#8B4158]">なごみ</p>
+      )}
       <div className="flex gap-2 mt-2 mb-2">
         <Image
           className="rounded-lg"
@@ -28,7 +31,11 @@ export function SearchShopCard({ ImageType }: { ImageType: string }) {
         <p className="text[4px] mr-1">こだわりのスイーツが楽しめるお店</p>
       </div>
       <div className="flex w-auto  h-[20px] p-1 items-center gap-2 justify-between">
-        {(ImageType === "shop1") ? <p className="text[7px] text-[#757575]">カフェ</p> : <p className="text[7px] text-[#757575]">レストラン</p>}
+        {ImageType === "shop1" ? (
+          <p className="text[7px] text-[#757575]">カフェ</p>
+        ) : (
+          <p className="text[7px] text-[#757575]">レストラン</p>
+        )}
         <div className="flex gap-2">
           <div className="flex gap-2  rounded-full bg-[#f3f3f3] p-1">
             <Image src="/good-icon.svg" alt="good" width={14} height={14} />

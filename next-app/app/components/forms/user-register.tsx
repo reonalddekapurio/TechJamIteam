@@ -41,13 +41,13 @@ export default function UserRegister() {
             type="text"
             {...register("name", {
               required: "ユーザー名は必須です",
-              maxLength : {
-                value : 12 ,
-                message : "ユーザー名は12文字以内で入力してください",
+              maxLength: {
+                value: 12,
+                message: "ユーザー名は12文字以内で入力してください",
               },
-              minLength : {
-                value : 1,
-                message : "ユーザー名は1文字以上で入力してください",
+              minLength: {
+                value: 1,
+                message: "ユーザー名は1文字以上で入力してください",
               },
             })}
             className="p-4 bg-white rounded-2xl w-full"

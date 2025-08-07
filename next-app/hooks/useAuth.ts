@@ -27,16 +27,18 @@ export function useAuth() {
   useEffect(() => {
     const fetchUserIcon = async () => {
       const supabase = createClient();
-      const { data } = supabase.storage.from("image").getPublicUrl(user?.userIcon || "");
-      if(!user) return;
+      const { data } = supabase.storage
+        .from("image")
+        .getPublicUrl(user?.userIcon || "");
+      if (!user) return;
 
       if (data.publicUrl) {
         setUser({
           ...user,
-          userIcon : data.publicUrl,
-        })
+          userIcon: data.publicUrl,
+        });
       }
-    }
-  } , [user])
+    };
+  }, [user]);
   return user;
 }
