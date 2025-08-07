@@ -66,8 +66,11 @@ export default function ProfileEdit() {
       body: formData,
     })
       .then((res) => res.json())
-      .then(() => {
-        router.push("/profile");
+      .then((response) => {
+        if(response.status === 200) {
+            router.push("/profile");
+        }
+        setMsg(response.message);
       })
       .catch((e) => {
         setMsg(e.message);
@@ -91,7 +94,7 @@ export default function ProfileEdit() {
           <input
             type="file"
             id="userIcon"
-            accept=".jpg,.jpeg"
+            accept=".jpg,.jpeg,.png,.gif"
             hidden={true}
             onChange={handleFileChange}
           />
