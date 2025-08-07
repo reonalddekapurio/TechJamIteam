@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import {FooterNavItem} from "@/components/shared/FooterNavItem"
+import { FooterNavItem } from "@/components/shared/FooterNavItem";
 
 export default function Map() {
-    return (
-        <>
-            <FooterNavItem />
-        </>
-    );
-}           
+  return (
+    <>
+      <FooterNavItem />
+    </>
+  );
+}
