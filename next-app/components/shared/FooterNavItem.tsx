@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export function FooterNavItem() {
   const pathName = usePathname();
   return (
-    <footer className=" w-80 h-16  rounded-lg bg-[#FFF] drop-shadow-md ">
+    <footer className=" w-80 h-16  rounded-lg bg-[#FFF] drop-shadow-xl ">
       <nav>
         <ul className="flex justify-center items-center gap-10 p-2 h-16">
           <li>
