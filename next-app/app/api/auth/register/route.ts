@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
           id: userId,
           name,
           email,
-          userIcon: null,
+          userIcon: '/default-icon.jpeg',
         },
       });
       // ユーザー登録に失敗した場合。

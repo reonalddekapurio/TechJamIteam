@@ -38,7 +38,8 @@ export async function POST(req: NextRequest) {
     // storageに画像を追加
     if (userIcon) {
       try {
-        const fileName = `${userId}/${Date.now()}_${userIcon.name}`;
+        const originalName = userIcon.name || 'image.jpg';
+        const fileName = `${userId}/${Date.now()}_${originalName}`;
         
         const { data, error: uploadError } = await supabase.storage
           .from("image") // バケット名

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 interface User {
   name: string;
   email: string;
-  userIcon: string | null;
+  userIcon: string;
 }
 // ログインしているユーザーの情報を取得するフック
 export function useAuth() {
@@ -28,6 +28,8 @@ export function useAuth() {
     const fetchUserIcon = async () => {
       const supabase = createClient();
       const { data } = supabase.storage.from("image").getPublicUrl(user?.userIcon || "");
+      if(!user) return;
+
       if (data.publicUrl) {
         setUser({
           ...user,
