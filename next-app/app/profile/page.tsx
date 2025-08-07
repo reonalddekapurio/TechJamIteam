@@ -8,7 +8,7 @@ export default function Profile() {
   const user = useAuth();
 
   // ユーザー情報を取得するまで
-  if(!user) return <Fetching />
+  if (!user) return <Fetching />;
   return (
     <div className="">
       <h2>ログインしているユーザー名{user?.name}</h2>

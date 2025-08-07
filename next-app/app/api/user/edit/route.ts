@@ -3,7 +3,6 @@ import { db } from "@/lib/prisma";
 import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 
-
 export async function POST(req: NextRequest) {
   try {
     // 画像つきはformdataとして受け取る
@@ -38,15 +37,15 @@ export async function POST(req: NextRequest) {
     if (userIcon) {
       try {
         // 拡張子を検証
-        const extension = userIcon.name.split('.').pop();
+        const extension = userIcon.name.split(".").pop();
         const fileName = `${userId}/${Date.now()}.${extension}`;
 
         const { data, error: uploadError } = await supabase.storage
           .from("image") // バケット名
-          .upload(fileName, userIcon , {
-            contentType : userIcon.type,
-            cacheControl : '3600',
-            upsert : false,
+          .upload(fileName, userIcon, {
+            contentType: userIcon.type,
+            cacheControl: "3600",
+            upsert: false,
           }); // ファイルのpathを指定する
 
         if (uploadError) {
