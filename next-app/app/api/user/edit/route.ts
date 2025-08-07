@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(
-      { message: "ユーザー情報を更新しました。" },
+      { message: "ユーザー情報を更新しました。", status: 200 },
       { status: 200 },
     );
   } catch (error) {
