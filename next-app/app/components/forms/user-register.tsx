@@ -47,7 +47,7 @@ export default function UserRegister() {
       <form onSubmit={handleSubmit(onSubmit, onErrors)} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-bold mb-2">
-            ユーザーID
+          <p className="flex items-center px-1 gap-2">ユーザー名<span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
           </label>
           <input
             type="text"
@@ -56,7 +56,7 @@ export default function UserRegister() {
             })}
             className="p-4 bg-white rounded-2xl w-full border border-gray-400"
             id="name"
-            placeholder="ユーザーIDを入力" 
+            placeholder="ユーザー名を入力" 
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -65,7 +65,7 @@ export default function UserRegister() {
 
         <div>
           <label htmlFor="email" className="block text-sm font-bold mb-2">
-            email
+          <p className="flex items-center px-1 gap-2">email <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
           </label>
           <input
             type="email"
@@ -87,7 +87,7 @@ export default function UserRegister() {
 
         <div>
           <label htmlFor="password" className="block text-sm font-bold mb-2">
-            パスワード
+            <p className="flex items-center px-1 gap-2">パスワード <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
           </label>
           <input
             type="password"
