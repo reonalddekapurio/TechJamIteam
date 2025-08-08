@@ -41,8 +41,17 @@ export default function UserRegister() {
             type="text"
             {...register("name", {
               required: "ユーザー名は必須です",
+              maxLength: {
+                value: 12,
+                message: "ユーザー名は12文字以内で入力してください",
+              },
+              minLength: {
+                value: 1,
+                message: "ユーザー名は1文字以上で入力してください",
+              },
             })}
             className="p-4 bg-white rounded-2xl w-full"
+            id="name"
           />
           {errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -55,6 +64,7 @@ export default function UserRegister() {
           </label>
           <input
             type="email"
+            id="email"
             {...register("email", {
               required: "メールアドレスは必須です",
               pattern: {
