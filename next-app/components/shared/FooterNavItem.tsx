@@ -35,9 +35,9 @@ export function FooterNavItem() {
           </li>
 
           <li>
-            <Link href="/plofile">
+            <Link href="/profile">
               <Image
-                className={`${pathName === "/plofile" ? "border-b-[2px] border-[#8B4158] pb-2" : ""}`}
+                className={`${pathName === "/profile" ? "border-b-[2px] border-[#8B4158] pb-2" : ""}`}
                 src="/plofile-icon.svg"
                 alt="plofile"
                 width={30}
