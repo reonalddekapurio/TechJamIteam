@@ -13,7 +13,10 @@ export default function LogoutButton() {
     router.push("/login");
   };
   return (
-    <button className="bg-black text-white" onClick={handleLogout}>
+    <button
+      className="bg-[#ff0000] text-white px-8 py-2 rounded-[10px] font-bold text-lg"
+      onClick={handleLogout}
+    >
       ログアウト
     </button>
   );

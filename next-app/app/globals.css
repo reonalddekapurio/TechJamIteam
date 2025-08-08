@@ -18,3 +18,17 @@
     --foreground: #ededed;
   }
 }
+
+body {
+  background: url("/background.svg") no-repeat center center fixed;
+  background-size: 140px 230px;
+  background-position: center;
+}
+
+/* ログインする前のページでは無効化 */
+body[data-page="login"],
+body[data-page="register"],
+body[data-page="confirm"],
+body[data-page="home"] {
+  background: none !important;
+}
