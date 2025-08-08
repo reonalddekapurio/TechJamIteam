@@ -10,7 +10,7 @@ export default function Map() {
       <div>
         <div className="flex flex-col items-center mt-4">
           <p className="text-[24px] font-bold text-[#8B4158]">
-            運営運営イチオシマップ
+            運営イチオシマップ
           </p>
           <p className="font-bold">TOP4セレクト</p>
         </div>
