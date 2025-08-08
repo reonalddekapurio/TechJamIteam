@@ -28,12 +28,20 @@ export default function Profile() {
         <div className="w-full px-2">
           <h2 className="font-bold text-left mt-4 mb-2">お気に入りリスト</h2>
           <div className="flex items-start space-x-2 overflow-x-auto">
-            <ShopCard ImageType="shop1" />
-            <ShopCard ImageType="shop2" />
+            <ShopCard
+              name="カフェドエピ"
+              genreName="カフェ"
+              image="/shop-demo.svg"
+            />
+            <ShopCard
+              name="カフェドエピ"
+              genreName="カフェ"
+              image="/shop-demo.svg"
+            />
           </div>
         </div>
       </div>
-      <div className="bg-[#8B4158] w-full flex flex-col items-center  h-72 justify-between">
+      <div className="bg-[#8B4158] w-full flex flex-col items-center  h-auto justify-between">
         <div className="flex flex-col items-center mb-[44px] mt-[28px] space-y-6">
           <ContactButton />
           <LogoutButton />
