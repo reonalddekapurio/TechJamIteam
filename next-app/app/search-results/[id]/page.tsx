@@ -6,7 +6,7 @@ import { SearchBar } from "@/components/shared/SearchBar";
 import { SearchShopCard } from "@/components/features/SearchShopCard";
 import { FooterNavItem } from "@/components/shared/FooterNavItem";
 import { Store } from "@/app/types/store";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Fetching from "@/app/components/common/Fetching";
 
 export default function SearchResults() {
@@ -16,6 +16,8 @@ export default function SearchResults() {
 
   const params = useParams<{ id: string }>();
   const genreId = params.id;
+
+  const router = useRouter();
 
   useEffect(() => {
     setIsVisible(true);
@@ -55,7 +57,9 @@ export default function SearchResults() {
         className={`${animationClass} flex flex-col items-center justify-center w-full gap-4 pt-32`}
       >
         {stores.map((store) => (
-          <SearchShopCard key={store.id} store={store} />
+          <div key={store.id} onClick={() => router.push(`/store/${store.id}`)}>
+            <SearchShopCard  store={store} />
+          </div>
         ))}
       </div>
 

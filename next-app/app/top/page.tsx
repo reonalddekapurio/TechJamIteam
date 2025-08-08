@@ -33,6 +33,10 @@ export default function Top() {
     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
   }`;
 
+  const handleClick = (storeId : number) => {
+    router.push(`/store/${storeId}`);
+  }
+
   if (fetching) return <Fetching />;
   if (error) return <div>エラーが発生しました: {error}</div>;
 
@@ -68,7 +72,7 @@ export default function Top() {
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
               {stores.map((store) => (
-                <div key={store.id} onClick={() => router.push(`/store/${store.id}`)}>
+                <div key={store.id} onClick={() => handleClick(store.id)}>
                   <ShopCard
                     name={store.name}
                     genreName={store.genre.name}
@@ -89,7 +93,7 @@ export default function Top() {
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
               {stores.map((store) => (
-                <div key={store.id}>
+                <div key={store.id} onClick={() => handleClick(store.id)}>
                   <ShopCard
                     name={store.name}
                     genreName={store.genre.name}
@@ -110,7 +114,7 @@ export default function Top() {
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
               {stores.map((store) => (
-                <div key={store.id}>
+                <div key={store.id} onClick={() => handleClick(store.id)}>
                   <ShopCard
                     name={store.name}
                     genreName={store.genre.name}
