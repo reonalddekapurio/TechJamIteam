@@ -55,9 +55,9 @@ export default function UserLogin() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit, onErrors)} className="space-y-6">
-          <div>
+          <div className="mb-10">
             <label className="flex items-center font-semibold text-gray-700 mb-2">
-              <p className="flex items-center">ユーザーID　<span className="bg-red-500 p-2 rounded-lg text-white">必須</span></p>
+              <p className="flex items-center px-1 gap-2">メールアドレス<span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
               {errors.email && (
                 <span className="ml-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded">
                   {errors.email.message}
@@ -67,7 +67,7 @@ export default function UserLogin() {
             <input
               id="email"
               type="email"
-              placeholder="ユーザーIDを入力"
+              placeholder="メールアドレスを入力"
               {...register("email", {
                 required: "必須",
               })}
@@ -75,12 +75,12 @@ export default function UserLogin() {
             />
           </div>
 
-          <div>
+          <div className="mb-15">
             <label
               htmlFor="password"
               className="flex items-center font-semibold text-gray-700 mb-2"
             >
-              <span>パスワード</span>
+              <p className="flex items-center px-1 gap-2">パスワード <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
               {errors.email && (
                 <span className="ml-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded">
                   {errors.email.message}
