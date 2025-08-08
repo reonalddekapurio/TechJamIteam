@@ -21,13 +21,15 @@ export type Store = {
     createdAt: string;
     updatedAt: string;
   };
-  storeImage: {
-    id: number;
-    path: string;
-    storeId: number;
-    createdAt: string;
-    updatedAt: string;
-  }[] | null;
+  storeImage:
+    | {
+        id: number;
+        path: string;
+        storeId: number;
+        createdAt: string;
+        updatedAt: string;
+      }[]
+    | null;
   _count: {
     storeLikes: number;
     storeSupports: number;

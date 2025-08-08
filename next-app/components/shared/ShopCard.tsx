@@ -7,14 +7,14 @@ type props = {
   name: string;
   genreName: string;
   image: string | null;
-}
-export function ShopCard({ name , genreName , image  } : props) {
+};
+export function ShopCard({ name, genreName, image }: props) {
   return (
     <div className="min-w-[190px] h-auto p-2  gap-2 rounded-lg ">
       <div>
         <Image
           className="rounded-lg w-[165px] h-[165px]"
-          src={`${image ?? "/shop-demo.svg"}`}
+          src={`/${image ?? "/shop-demo.svg"}`}
           alt="shop"
           width={165}
           height={165}
@@ -29,7 +29,7 @@ export function ShopCard({ name , genreName , image  } : props) {
               <Image src="/good-icon.svg" alt="good" width={14} height={14} />
             </div>
             {/* いいね数はとりあえず固定値で */}
-            <p className="text-[10px] ">1000</p>  
+            <p className="text-[10px] ">1000</p>
           </div>
         </div>
       </div>

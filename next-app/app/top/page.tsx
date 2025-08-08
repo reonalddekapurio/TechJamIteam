@@ -13,8 +13,8 @@ import Fetching from "../components/common/Fetching";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
-  const [fetching , setFetching] = useState<boolean>(true);
-  const { stores , error  } = useStores();
+  const [fetching, setFetching] = useState<boolean>(true);
+  const { stores, error } = useStores();
 
   useEffect(() => {
     setIsVisible(true);
@@ -69,17 +69,15 @@ export default function Top() {
           </div>
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
-              {
-                stores.map((store) => (
-                  <div key={store.id}>
-                    <ShopCard
-                      name={store.name}
-                      genreName={store.genre.name}
-                      image={store.storeImage?.[0].path ?? null}
-                    />
-                  </div>
-                ))
-              }
+              {stores.map((store) => (
+                <div key={store.id}>
+                  <ShopCard
+                    name={store.name}
+                    genreName={store.genre.name}
+                    image={store.storeImage?.[0].path ?? null}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -93,17 +91,15 @@ export default function Top() {
           </div>
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
-            {
-                stores.map((store) => (
-                  <div key={store.id}>
-                    <ShopCard
-                      name={store.name}
-                      genreName={store.genre.name}
-                      image={store.storeImage?.[0].path ?? null}
-                    />
-                  </div>
-                ))
-              }
+              {stores.map((store) => (
+                <div key={store.id}>
+                  <ShopCard
+                    name={store.name}
+                    genreName={store.genre.name}
+                    image={store.storeImage?.[0].path ?? null}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -117,17 +113,15 @@ export default function Top() {
           </div>
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
-            {
-                stores.map((store) => (
-                  <div key={store.id}>
-                    <ShopCard
-                      name={store.name}
-                      genreName={store.genre.name}
-                      image={store.storeImage?.[0].path ?? null}
-                    />
-                  </div>
-                ))
-              }
+              {stores.map((store) => (
+                <div key={store.id}>
+                  <ShopCard
+                    name={store.name}
+                    genreName={store.genre.name}
+                    image={store.storeImage?.[0].path ?? null}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
