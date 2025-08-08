@@ -51,7 +51,7 @@ export default function Confirm() {
       // データをクリア
       sessionStorage.removeItem("registerData");
       // 成功後の画面へリダイレクト
-      router.push("/");
+      router.push("/top");
     } catch (error) {
       console.log(error);
     } finally {
