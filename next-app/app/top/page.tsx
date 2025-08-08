@@ -10,11 +10,13 @@ import { FooterNavItem } from "@/components/shared/FooterNavItem";
 import { SiboriButton } from "@/components/features/SiboriButton";
 import useStores from "@/hooks/useStores";
 import Fetching from "../components/common/Fetching";
+import { useRouter } from "next/navigation";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
   const [fetching, setFetching] = useState<boolean>(true);
   const { stores, error } = useStores();
+  const router = useRouter();
 
   useEffect(() => {
     setIsVisible(true);
@@ -30,6 +32,10 @@ export default function Top() {
   const animationClass = `transition-opacity transition-transform duration-700 ease-out ${
     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
   }`;
+
+  const handleClick = (storeId: number) => {
+    router.push(`/store/${storeId}`);
+  };
 
   if (fetching) return <Fetching />;
   if (error) return <div>エラーが発生しました: {error}</div>;
@@ -66,7 +72,7 @@ export default function Top() {
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
               {stores.map((store) => (
-                <div key={store.id}>
+                <div key={store.id} onClick={() => handleClick(store.id)}>
                   <ShopCard
                     name={store.name}
                     genreName={store.genre.name}
@@ -87,7 +93,7 @@ export default function Top() {
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
               {stores.map((store) => (
-                <div key={store.id}>
+                <div key={store.id} onClick={() => handleClick(store.id)}>
                   <ShopCard
                     name={store.name}
                     genreName={store.genre.name}
@@ -108,7 +114,7 @@ export default function Top() {
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
               {stores.map((store) => (
-                <div key={store.id}>
+                <div key={store.id} onClick={() => handleClick(store.id)}>
                   <ShopCard
                     name={store.name}
                     genreName={store.genre.name}

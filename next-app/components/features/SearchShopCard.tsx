@@ -7,7 +7,7 @@ import { Store } from "@/app/types/store";
 export function SearchShopCard({ store }: { store: Store }) {
   return (
     <div className="w-[390px] h-auto p-4  gap-4  border-b-2 border-solid border-[#F1D8E0] ">
-        <p className="text[12px] font-bold text-[#8B4158]">{store.name}</p>
+      <p className="text[12px] font-bold text-[#8B4158]">{store.name}</p>
       <div className="flex gap-2 mt-1 mb-2 w-[180px] h-[165px]">
         <Image
           className="rounded-lg"

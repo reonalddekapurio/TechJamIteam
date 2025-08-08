@@ -31,17 +31,17 @@ export default function Profile() {
             <ShopCard
               name="カフェドエピ"
               genreName="カフェ"
-              image="/shop-demo.svg"
+              image="shop-demo.svg"
             />
             <ShopCard
               name="カフェドエピ"
               genreName="カフェ"
-              image="/shop-demo.svg"
+              image="shop-demo.svg"
             />
           </div>
         </div>
       </div>
-      <div className="bg-[#8B4158] w-full flex flex-col items-center  h-auto justify-between">
+      <div className="w-full flex flex-col items-center  h-auto justify-between">
         <div className="flex flex-col items-center mb-[44px] mt-[28px] space-y-6">
           <ContactButton />
           <LogoutButton />

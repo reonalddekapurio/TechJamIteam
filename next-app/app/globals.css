@@ -23,7 +23,8 @@ body {
   background: url("/background.svg") no-repeat center center fixed;
   background-size: 140px 230px;
   background-position: center;
-  margin-bottom: 100px;
+  background-color: #fffaf1;
+  margin-bottom: 90px;
 }
 
 /* ログインする前のページでは無効化 */
