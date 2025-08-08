@@ -39,12 +39,11 @@ export default function UserLogin() {
     console.log(errors);
   };
 
-  
   const email = watch("email");
   const password = watch("password");
-  
-  const isDisabled = isLoading || !email || !password || Object.keys(errors).length > 0;
-  
+
+  const isDisabled =
+    isLoading || !email || !password || Object.keys(errors).length > 0;
 
   return (
     <div className="flex justify-center w-[105%] items-center bg-gray-50">
@@ -57,7 +56,12 @@ export default function UserLogin() {
         <form onSubmit={handleSubmit(onSubmit, onErrors)} className="space-y-6">
           <div className="mb-10">
             <label className="flex items-center font-semibold text-gray-700 mb-2">
-              <p className="flex items-center px-1 gap-2">メールアドレス<span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
+              <p className="flex items-center px-1 gap-2">
+                メールアドレス
+                <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">
+                  必須
+                </span>
+              </p>
             </label>
             <input
               id="email"
@@ -72,11 +76,12 @@ export default function UserLogin() {
               })}
               className="w-full px-4 py-3 border border-black-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
             />
-            
+
             {errors.email && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.email.message}
-              </p>)}
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           <div className="mb-15">
@@ -84,8 +89,12 @@ export default function UserLogin() {
               htmlFor="password"
               className="flex items-center font-semibold text-gray-700 mb-2"
             >
-              <p className="flex items-center px-1 gap-2">パスワード <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
-              
+              <p className="flex items-center px-1 gap-2">
+                パスワード{" "}
+                <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">
+                  必須
+                </span>
+              </p>
             </label>
             <input
               type="password"
@@ -101,22 +110,22 @@ export default function UserLogin() {
               className="w-full px-4 py-3 border border-black-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
             />
             {errors.password && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.password.message}
-              </p>)}
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <button
-          type="submit"
-          disabled={isDisabled || isLoading}
-          className={`w-full py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold
+            type="submit"
+            disabled={isDisabled || isLoading}
+            className={`w-full py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold
           ${isDisabled ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-rose-800 text-white"}
           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-900
           transition-colors`}
           >
             {isLoading ? "ログイン中..." : "ログイン"}
           </button>
-
         </form>
       </div>
     </div>

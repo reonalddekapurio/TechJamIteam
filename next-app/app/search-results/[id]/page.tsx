@@ -58,7 +58,7 @@ export default function SearchResults() {
       >
         {stores.map((store) => (
           <div key={store.id} onClick={() => router.push(`/store/${store.id}`)}>
-            <SearchShopCard  store={store} />
+            <SearchShopCard store={store} />
           </div>
         ))}
       </div>

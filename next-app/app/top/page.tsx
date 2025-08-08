@@ -33,9 +33,9 @@ export default function Top() {
     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
   }`;
 
-  const handleClick = (storeId : number) => {
+  const handleClick = (storeId: number) => {
     router.push(`/store/${storeId}`);
-  }
+  };
 
   if (fetching) return <Fetching />;
   if (error) return <div>エラーが発生しました: {error}</div>;

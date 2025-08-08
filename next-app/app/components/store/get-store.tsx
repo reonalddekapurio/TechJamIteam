@@ -25,7 +25,7 @@ export default function GetStore() {
       })
       .catch((e) => {
         console.error("エラーが発生しました。", e);
-      })
+      });
   }, [storeId]);
 
   if (isLoading) {
@@ -42,7 +42,10 @@ export default function GetStore() {
   return (
     <div className="flex flex-col items-center w-full p-4 ">
       <div className="flex items-center gap-2 mb-4 w-full space-x-5">
-        <button className="text-[16px] font-bold text-[#8B4158]" onClick={() => router.back()}>
+        <button
+          className="text-[16px] font-bold text-[#8B4158]"
+          onClick={() => router.back()}
+        >
           ← 戻る
         </button>
         <h2 className="text-[16px] font-bold text-[#8B4158] ">{store.name}</h2>
@@ -87,7 +90,6 @@ export default function GetStore() {
         </div>
       )}
 
-
       <div className="w-full mb-6 border-t-2 border-[#8B4158] pt-6 flex flex-col space-y-4">
         <div className="flex gap-2">
           <p className="text-[16px] font-bold text-[#8B4158]">住所</p>
@@ -96,7 +98,10 @@ export default function GetStore() {
         <div className="flex gap-2">
           <p className="text-[16px] font-bold text-[#8B4158]">SNS</p>
           <p className="text-[16px] font-medium text-black">
-            <a href={store.link} className="underline text-blue-400 hover:text-blue-600 cursor-pointer">
+            <a
+              href={store.link}
+              className="underline text-blue-400 hover:text-blue-600 cursor-pointer"
+            >
               {store.link}
             </a>
           </p>
@@ -108,7 +113,6 @@ export default function GetStore() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
