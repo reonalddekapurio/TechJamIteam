@@ -8,18 +8,32 @@ import { SearchBar } from "@/components/shared/SearchBar";
 import { ShopCard } from "@/components/shared/ShopCard";
 import { FooterNavItem } from "@/components/shared/FooterNavItem";
 import { SiboriButton } from "@/components/features/SiboriButton";
+import useStores from "@/hooks/useStores";
+import Fetching from "../components/common/Fetching";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
+  const [fetching , setFetching] = useState<boolean>(true);
+  const { stores , error  } = useStores();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  useEffect(() => {
+    // から配列の時はロード
+    if (stores.length > 0) {
+      setFetching(false);
+    }
+  }, [stores]);
+
   // アニメーション用クラス
   const animationClass = `transition-opacity transition-transform duration-700 ease-out ${
     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
   }`;
+
+  if (fetching) return <Fetching />;
+  if (error) return <div>エラーが発生しました: {error}</div>;
 
   return (
     <>
@@ -55,12 +69,17 @@ export default function Top() {
           </div>
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
+              {
+                stores.map((store) => (
+                  <div key={store.id}>
+                    <ShopCard
+                      name={store.name}
+                      genreName={store.genre.name}
+                      image={store.storeImage?.[0].path ?? null}
+                    />
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -74,12 +93,17 @@ export default function Top() {
           </div>
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
+            {
+                stores.map((store) => (
+                  <div key={store.id}>
+                    <ShopCard
+                      name={store.name}
+                      genreName={store.genre.name}
+                      image={store.storeImage?.[0].path ?? null}
+                    />
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -93,12 +117,17 @@ export default function Top() {
           </div>
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
-              <ShopCard ImageType="shop1" />
+            {
+                stores.map((store) => (
+                  <div key={store.id}>
+                    <ShopCard
+                      name={store.name}
+                      genreName={store.genre.name}
+                      image={store.storeImage?.[0].path ?? null}
+                    />
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>

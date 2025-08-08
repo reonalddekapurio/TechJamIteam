@@ -34,7 +34,7 @@ export default function GetStore() {
           <div>店名：{store?.name}</div>
           <div>住所：{store?.address}</div>
           <div>ジャンル：{store?.genre.name}</div>
-          <div>画像：{store?.storeImage?.path}</div>
+          <div>画像：{store?.storeImage?.[0].path}</div>
           <div>いいね数：{store?._count.storeLikes}</div>
           <div>サポート数：{store?._count.storeSupports}</div>
         </div>
