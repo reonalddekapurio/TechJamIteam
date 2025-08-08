@@ -6,7 +6,6 @@ import Image from "next/image";
 export function SearchShopCard({ ImageType }: { ImageType: string }) {
   return (
     <div className="w-[390px] h-auto p-4  gap-4  border-b-2 border-solid border-[#F1D8E0] ">
-
       {ImageType === "shop1" ? (
         <p className="text[12px] font-bold text-[#8B4158]">カフェドエピ</p>
       ) : (
@@ -14,7 +13,6 @@ export function SearchShopCard({ ImageType }: { ImageType: string }) {
       )}
 
       <div className="flex gap-2 mt-1 mb-2 w-[180px] h-[165px]">
-
         <Image
           className="rounded-lg"
           src={`${ImageType === "shop1" ? "/shop-demo.svg" : "/shop-demo-nagomi.svg"}`}

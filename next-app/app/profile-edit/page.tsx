@@ -67,7 +67,6 @@ export default function ProfileEdit() {
     })
       .then((res) => res.json())
       .then((response) => {
-
         if (response.status === 200) {
           router.push("/profile");
         }

@@ -22,16 +22,13 @@ export default function SearchResults() {
 
   return (
     <>
-
       {/* アニメなし部分（検索バー＋タイトル） */}
       <div className="flex flex-col items-center justify-center w-screen gap-4 fixed top-0 left-0 w-full z-20 bg-[#FFFAF1] pb-4">
         <SearchBar />
         <p className="text-lg font-bold text-[#8B4158] border-b-2 border-solid border-[#8B4158]">
-
           検索結果
         </p>
       </div>
-
 
       {/* アニメーションを付ける検索結果一覧 */}
       <div
@@ -51,7 +48,6 @@ export default function SearchResults() {
 
       {/* フッターもアニメなし */}
       <div className="flex flex-col items-center justify-center fixed bottom-6 left-0 w-full">
-
         <FooterNavItem />
       </div>
     </>
