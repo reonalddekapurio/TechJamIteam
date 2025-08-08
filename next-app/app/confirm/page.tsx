@@ -2,6 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import Logo from "../components/common/Logo";
+
+
 
 type User = {
   name: string;
@@ -65,52 +68,52 @@ export default function Confirm() {
   }
 
   return (
-    <main className="flex justify-center items-center h-screen">
-      <div className="p-4 bg-amber-200 rounded-lg shadow-2xl max-w-md w-full">
-        <h1 className="text-2xl font-bold mb-6">登録内容の確認</h1>
+    <main className="pt-10">
+      <Logo/>
+      <span className="flex justify-center items-center">
+      
 
-        <form onSubmit={handleSubmit}>
-          <div className="space-y-4 mb-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                ユーザー名
-              </label>
-              <p className="p-4 bg-white rounded-2xl">{formData.name}</p>
+        <div className="p-4 rounded-lg max-w-md w-full">
+
+        <h1 className="text-base font-bold my-5 text-center"> 新規アカウント登録入力確認</h1>
+
+
+          <form onSubmit={handleSubmit} className="py-2.5">
+            <div className="space-y-4 mb-6">
+              <div>
+                <label className="block text-base font-bold text-gray-700 mb-1">
+                  <p className="flex items-center px-1 gap-2 pl-3">ユーザー名 <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
+                </label>
+                <p className="p-4 bg-white rounded-2xl">{formData.name}</p>
+              </div>
+
+              <div>
+                <label className="block text-base font-bold text-gray-700 mb-1">
+                  <p className="flex items-center px-1 gap-2 pl-3">email <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
+                </label>
+                <p className="p-4 bg-white rounded-2xl">{formData.email}</p>
+              </div>
+
+              <div>
+                <label className="block text-base font-bold text-gray-700 mb-1">
+                  <p className="flex items-center px-1 gap-2 pl-3">パスワード <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
+                </label>
+                <p className="p-4 bg-white rounded-2xl">••••••••</p>
+              </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                メールアドレス
-              </label>
-              <p className="p-4 bg-white rounded-2xl">{formData.email}</p>
+            <div className="flex space-x-4">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="flex-1 p-4 rounded-full bg-rose-800 text-white disabled:opacity-50 focus:ring-2 focus:ring-offset-2 focus:ring-rose-900"
+              >
+                {isLoading ? "登録中..." : "新規登録"}
+              </button>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                パスワード
-              </label>
-              <p className="p-4 bg-white rounded-2xl">••••••••</p>
-            </div>
-          </div>
-
-          <div className="flex space-x-4">
-            <button
-              type="button"
-              onClick={handleBack}
-              className="flex-1 p-4 bg-gray-500 text-white rounded-2xl hover:bg-gray-600"
-            >
-              戻る
-            </button>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="flex-1 p-4 bg-blue-600 text-white rounded-2xl hover:bg-blue-700 disabled:opacity-50"
-            >
-              {isLoading ? "登録中..." : "登録する"}
-            </button>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </span>
     </main>
   );
 }
