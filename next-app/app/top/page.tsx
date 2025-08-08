@@ -16,14 +16,12 @@ export default function Top() {
     setIsVisible(true);
   }, []);
 
-  // アニメーション用クラス
   const animationClass = `transition-opacity transition-transform duration-700 ease-out ${
     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
   }`;
 
   return (
     <>
-      {/* SearchBar と SiboriButton はアニメなし */}
       <div className="flex w-full items-center justify-center fixed top-0 left-0 z-20 gap-1">
         <SearchBar />
         <div>
@@ -31,7 +29,6 @@ export default function Top() {
         </div>
       </div>
 
-      {/* ふわっとアニメーションをつける部分 */}
       <div
         className={`${animationClass} flex flex-col drop-shadow-xl items-center justify-center pt-20 w-full z-10`}
       >
@@ -46,7 +43,6 @@ export default function Top() {
       </div>
 
       <div className={`${animationClass} flex flex-col items-center`}>
-        {/* 1つ目のセクション */}
         <div className="max-w-96">
           <div className="mt-8 border-b-2 border-solid border-[#8B4158]">
             <p className="inline-block text-lg font-bold text-[#8B4158]">
@@ -65,7 +61,6 @@ export default function Top() {
           </div>
         </div>
 
-        {/* 2つ目のセクション */}
         <div className="max-w-96 mt-8">
           <div className="border-b-2 border-solid border-[#8B4158]">
             <p className="inline-block text-lg font-bold text-[#8B4158]">
@@ -84,7 +79,6 @@ export default function Top() {
           </div>
         </div>
 
-        {/* 3つ目のセクション */}
         <div className="max-w-96 mt-8">
           <div className="border-b-2 border-solid border-[#8B4158]">
             <p className="inline-block text-lg font-bold text-[#8B4158]">
@@ -104,7 +98,6 @@ export default function Top() {
         </div>
       </div>
 
-      {/* フッターはアニメなし */}
       <div className="flex flex-col items-center justify-center fixed bottom-6 left-0 w-full">
         <FooterNavItem />
       </div>
