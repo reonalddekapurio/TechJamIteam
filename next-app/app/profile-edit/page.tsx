@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { FieldErrors, useForm } from "react-hook-form";
 import Fetching from "../components/common/Fetching";
 import { useRouter } from "next/navigation";
+import { FooterNavItem } from "@/components/shared/FooterNavItem";
 
 type FormData = {
   name: string;
@@ -17,11 +18,13 @@ export default function ProfileEdit() {
   const [msg, setMsg] = useState<string>("");
   const user = useAuth();
   const router = useRouter();
+
   // 初期値を設定
   const defaultValues: FormData = {
     name: "",
     userIcon: null,
   };
+
   // フォームの設定
   const {
     register,
@@ -30,6 +33,7 @@ export default function ProfileEdit() {
     setValue,
     reset,
   } = useForm<FormData>({ defaultValues });
+
   // ユーザー情報は非同期で取得するため、ユーザー情報が読み込まれた後にフォームをリセット
   useEffect(() => {
     if (user) {
@@ -67,11 +71,9 @@ export default function ProfileEdit() {
     })
       .then((res) => res.json())
       .then((response) => {
-
         if (response.status === 200) {
           router.push("/profile");
         }
-        setMsg(response.message);
       })
       .catch((e) => {
         setMsg(e.message);
@@ -88,10 +90,13 @@ export default function ProfileEdit() {
   return fetching ? (
     <Fetching />
   ) : (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <form onSubmit={handleSubmit(onSubmit, onErrors)}>
+    <div className="flex flex-col items-center justify-start h-screen w-full">
+      <h2 className="font-bold mt-6 mb-4">プロフィール編集</h2>
+      <form
+        onSubmit={handleSubmit(onSubmit, onErrors)}
+        className="w-full flex flex-col items-center"
+      >
         <div>
-          <label htmlFor="userIcon">アイコン</label>
           <input
             type="file"
             id="userIcon"
@@ -101,35 +106,55 @@ export default function ProfileEdit() {
           />
           {/* プレビュー表示 */}
           {previewUrl && (
-            <img
-              src={previewUrl}
-              alt="プレビュー"
-              className="w-20 h-20 rounded-full mt-2"
-            />
+            <div className="flex items-center justify-center">
+              <label htmlFor="userIcon" className="cursor-pointer relative">
+                <img
+                  src={previewUrl}
+                  alt="プレビュー"
+                  className="w-[100px] h-[100px] rounded-full opacity-70"
+                />
+                <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-semibold">
+                  変更
+                </p>
+              </label>
+            </div>
           )}
         </div>
-        <label htmlFor="name">ユーザー名</label>
-        <input
-          type="text"
-          id="name"
-          {...register("name", {
-            required: true,
-            maxLength: {
-              value: 12,
-              message: "ユーザー名は12文字以内で入力してください",
-            },
-            minLength: {
-              value: 1,
-              message: "ユーザー名は1文字以上で入力してください",
-            },
-          })}
-        />
-        {errors.name && <p>ユーザー名を入力してください</p>}
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "更新中..." : "更新する"}
+        <div className="flex flex-col items-center justify-center w-full px-4">
+          <label
+            htmlFor="name"
+            className="font-bold text-lg text-left w-full mb-2 mt-4"
+          >
+            ユーザーネーム
+          </label>
+          <input
+            className="w-full px-2 py-3 border-2 border-black rounded-lg"
+            type="text"
+            id="name"
+            {...register("name", {
+              required: "ユーザー名を入力してください",
+              maxLength: {
+                value: 12,
+                message: "ユーザー名は12文字以内で入力してください",
+              },
+            })}
+          />
+          {errors.name && (
+            <p className="text-red-500 text-sm mt-1 text-center">
+              {errors.name.message}
+            </p>
+          )}
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="bg-[#F6B741] text-white font-bold px-[18.5px] py-[10px] rounded-lg text-center mt-4"
+        >
+          {isLoading ? "更新中..." : "変更を確定"}
         </button>
-        {msg && <p>{msg}</p>}
+        {msg && <p className="text-red-500 text-sm mt-2 text-center">{msg}</p>}
       </form>
+      <FooterNavItem />
     </div>
   );
 }

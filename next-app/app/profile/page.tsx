@@ -13,11 +13,16 @@ export default function Profile() {
   // ユーザー情報を取得するまで
   if (!user) return <Fetching />;
   return (
-    <div className="flex flex-col items-center justify-between mt-10 h-screen w-full">
-      <div className="flex flex-col items-center w-full" >
+    <div className="flex flex-col items-center justify-between mt-10 w-full">
+      <div className="flex flex-col items-center w-full">
         <h2 className="font-bold">プロフィール</h2>
-        {user?.userIcon && <img src={user.userIcon} alt="ユーザーのアイコン" 
-        className="w-[100px] h-[100px] rounded-full my-3"/>}
+        {user?.userIcon && (
+          <img
+            src={user.userIcon}
+            alt="ユーザーのアイコン"
+            className="w-[100px] h-[100px] rounded-full my-3"
+          />
+        )}
         <h2 className="mb-2">{user?.name}</h2>
         <ProfileEditButton />
         <div className="w-full px-2">
@@ -33,10 +38,8 @@ export default function Profile() {
           <ContactButton />
           <LogoutButton />
         </div>
-        <div className="mb-10">
-          <FooterNavItem />
-        </div>
       </div>
+      <FooterNavItem />
     </div>
   );
 }
