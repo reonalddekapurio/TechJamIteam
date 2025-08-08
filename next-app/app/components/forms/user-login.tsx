@@ -58,21 +58,25 @@ export default function UserLogin() {
           <div className="mb-10">
             <label className="flex items-center font-semibold text-gray-700 mb-2">
               <p className="flex items-center px-1 gap-2">メールアドレス<span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
-              {errors.email && (
-                <span className="ml-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded">
-                  {errors.email.message}
-                </span>
-              )}
             </label>
             <input
               id="email"
               type="email"
               placeholder="メールアドレスを入力"
               {...register("email", {
-                required: "必須",
+                required: "メールアドレスは必須です",
+                pattern: {
+                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "メールアドレスの形式が不正です",
+                },
               })}
               className="w-full px-4 py-3 border border-black-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
             />
+            
+            {errors.email && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.email.message}
+              </p>)}
           </div>
 
           <div className="mb-15">
@@ -81,11 +85,7 @@ export default function UserLogin() {
               className="flex items-center font-semibold text-gray-700 mb-2"
             >
               <p className="flex items-center px-1 gap-2">パスワード <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
-              {errors.email && (
-                <span className="ml-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded">
-                  {errors.email.message}
-                </span>
-              )}
+              
             </label>
             <input
               type="password"
@@ -100,6 +100,10 @@ export default function UserLogin() {
               })}
               className="w-full px-4 py-3 border border-black-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
             />
+            {errors.password && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.password.message}
+              </p>)}
           </div>
 
           <button
@@ -107,7 +111,7 @@ export default function UserLogin() {
           disabled={isDisabled || isLoading}
           className={`w-full py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold
           ${isDisabled ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-rose-800 text-white"}
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-900
           transition-colors`}
           >
             {isLoading ? "ログイン中..." : "ログイン"}

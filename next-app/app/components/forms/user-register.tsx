@@ -115,7 +115,7 @@ export default function UserRegister() {
           disabled={isDisabled || isLoading}
           className={`w-full py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold
           ${isDisabled ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-rose-800 text-white"}
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-900
           transition-colors`}
           >
             {isLoading ? "確認中..." : "入力確認"}
