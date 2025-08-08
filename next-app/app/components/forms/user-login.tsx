@@ -27,7 +27,7 @@ export default function UserLogin() {
       setIsLoading(true);
       setMsg("ログイン中...");
       await login(data);
-      router.push("/");
+      router.push("/top");
     } catch (error) {
       setMsg("ログインに失敗しました");
     } finally {

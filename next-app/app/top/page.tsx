@@ -10,11 +10,13 @@ import { FooterNavItem } from "@/components/shared/FooterNavItem";
 import { SiboriButton } from "@/components/features/SiboriButton";
 import useStores from "@/hooks/useStores";
 import Fetching from "../components/common/Fetching";
+import { useRouter } from "next/navigation";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
   const [fetching, setFetching] = useState<boolean>(true);
   const { stores, error } = useStores();
+  const router = useRouter();
 
   useEffect(() => {
     setIsVisible(true);
@@ -66,7 +68,7 @@ export default function Top() {
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
               {stores.map((store) => (
-                <div key={store.id}>
+                <div key={store.id} onClick={() => router.push(`/store/${store.id}`)}>
                   <ShopCard
                     name={store.name}
                     genreName={store.genre.name}

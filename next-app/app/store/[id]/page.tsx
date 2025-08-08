@@ -1,10 +1,13 @@
 import GetStore from "@/app/components/store/get-store";
+import { FooterNavItem } from "@/components/shared/FooterNavItem";
 
 export default function StorePage() {
   return (
     <div>
-      <div>店舗詳細</div>
       <GetStore />
+      <div>
+        <FooterNavItem />
+      </div>
     </div>
   );
 }
