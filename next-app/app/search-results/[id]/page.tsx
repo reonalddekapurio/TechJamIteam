@@ -59,7 +59,6 @@ export default function SearchResults() {
         ))}
       </div>
 
-      {/* フッターもアニメなし */}
       <div className="flex flex-col items-center justify-center fixed bottom-6 left-0 w-full">
         <FooterNavItem />
       </div>

@@ -4,7 +4,7 @@ import UserLogin from "../components/forms/user-login";
 export default function Login() {
   return (
     <main className="flex flex-col items-center h-screen">
-      <div className="my-10">
+      <div className="mt-10">
         <Logo />
       </div>
       <UserLogin />
