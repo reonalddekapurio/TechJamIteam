@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Logo from "../components/common/Logo";
 
-
-
 type User = {
   name: string;
   email: string;
@@ -69,34 +67,48 @@ export default function Confirm() {
 
   return (
     <main className="pt-10">
-      <Logo/>
+      <Logo />
       <span className="flex justify-center items-center">
-      
-
         <div className="p-4 rounded-lg max-w-md w-full">
-
-        <h1 className="text-base font-bold my-5 text-center"> 新規アカウント登録入力確認</h1>
-
+          <h1 className="text-base font-bold my-5 text-center">
+            {" "}
+            新規アカウント登録入力確認
+          </h1>
 
           <form onSubmit={handleSubmit} className="py-2.5">
             <div className="space-y-4 mb-6">
               <div>
                 <label className="block text-base font-bold text-gray-700 mb-1">
-                  <p className="flex items-center px-1 gap-2 pl-3">ユーザー名 <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
+                  <p className="flex items-center px-1 gap-2 pl-3">
+                    ユーザー名{" "}
+                    <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">
+                      必須
+                    </span>
+                  </p>
                 </label>
                 <p className="p-4 bg-white rounded-2xl">{formData.name}</p>
               </div>
 
               <div>
                 <label className="block text-base font-bold text-gray-700 mb-1">
-                  <p className="flex items-center px-1 gap-2 pl-3">email <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
+                  <p className="flex items-center px-1 gap-2 pl-3">
+                    email{" "}
+                    <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">
+                      必須
+                    </span>
+                  </p>
                 </label>
                 <p className="p-4 bg-white rounded-2xl">{formData.email}</p>
               </div>
 
               <div>
                 <label className="block text-base font-bold text-gray-700 mb-1">
-                  <p className="flex items-center px-1 gap-2 pl-3">パスワード <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">必須</span></p>
+                  <p className="flex items-center px-1 gap-2 pl-3">
+                    パスワード{" "}
+                    <span className="bg-red-500 py-1 px-2 rounded-lg text-white text-sm">
+                      必須
+                    </span>
+                  </p>
                 </label>
                 <p className="p-4 bg-white rounded-2xl">••••••••</p>
               </div>
