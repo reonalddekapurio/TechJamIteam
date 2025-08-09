@@ -1,0 +1,172 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../app/generated/prisma" いらないらしい
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// テーブルを以下に書く
+model User {
+  id       String  @id // supabaseのuuidを使用する。
+  name     String
+  email    String  @unique
+  // password String supabaseでパスワードは管理
+  userIcon String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 接続を定義
+  forms         Form[]
+  storeLikes    StoreLike[]
+  storeSupports StoreSupport[]
+  comments      Comment[]
+}
+
+model Store {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  link        String?
+  address     String?
+
+  genreId Int // 外部キー
+  genre   Genre @relation(fields: [genreId], references: [id], onDelete: Cascade) // 制約
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  recommends    Recommend[]
+  storeLikes    StoreLike[]
+  storeSupports StoreSupport[]
+  comments      Comment[]
+  storeImage    StoreImage[]
+}
+
+model Comment {
+  id      Int    @id @default(autoincrement())
+  message String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  storeId Int
+  store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Genre {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 接続を定義
+  stores Store[]
+  forms  Form[]
+}
+
+model StoreImage {
+  id   Int    @id @default(autoincrement())
+  path String
+
+  storeId Int
+  store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Form {
+  id      Int     @id @default(autoincrement())
+  name    String
+  menu    String?
+  address String?
+
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  genreId Int
+  genre   Genre  @relation(fields: [genreId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  formImage FormImage[]
+}
+
+model FormImage {
+  id   Int    @id @default(autoincrement())
+  path String
+
+  formId Int
+  form   Form @relation(fields: [formId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Recommend {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  isShow      Boolean @default(true)
+
+  storeId Int
+  store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  recommendImage RecommendImage[]
+}
+
+model RecommendImage {
+  id   Int    @id @default(autoincrement())
+  path String
+
+  recommendId Int
+  recommend   Recommend @relation(fields: [recommendId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 中間テーブル
+model StoreLike {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  storeId Int
+  store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, storeId])
+}
+
+model StoreSupport {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  storeId Int
+  store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, storeId])
+}

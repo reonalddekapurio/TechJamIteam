@@ -1,0 +1,44 @@
+"use client";
+
+import { createClient } from "@/utils/supabase/client";
+import { useEffect, useState } from "react";
+
+interface User {
+  name: string;
+  email: string;
+  userIcon: string;
+}
+// ログインしているユーザーの情報を取得するフック
+export function useAuth() {
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    fetch("/api/user/show")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(`error : ${data.message}`);
+          return;
+        }
+        setUser(data); // ユーザーの情報取得
+        console.log(data);
+      });
+  }, []);
+  // storageからアイコンを取得
+  useEffect(() => {
+    const fetchUserIcon = async () => {
+      const supabase = createClient();
+      const { data } = supabase.storage
+        .from("image")
+        .getPublicUrl(user?.userIcon || "");
+      if (!user) return;
+
+      if (data.publicUrl) {
+        setUser({
+          ...user,
+          userIcon: data.publicUrl,
+        });
+      }
+    };
+  }, [user]);
+  return user;
+}
