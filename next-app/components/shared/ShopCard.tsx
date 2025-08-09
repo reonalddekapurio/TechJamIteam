@@ -14,7 +14,7 @@ export function ShopCard({ name, genreName, image }: props) {
       <div>
         <Image
           className="rounded-lg w-[165px] h-[165px]"
-          src={`/${image ?? "/shop-demo.svg"}`}
+          src={`/${image ? image : "/shop-demo.svg"}`}
           alt="shop"
           width={165}
           height={165}

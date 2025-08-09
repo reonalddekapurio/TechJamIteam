@@ -11,9 +11,9 @@ export function FooterNavItem() {
       <nav>
         <ul className="flex justify-center items-center gap-10 p-2 h-16">
           <li>
-            <Link href="/home">
+            <Link href="/top">
               <Image
-                className={`${pathName === "/home" ? "border-b-[2px] border-[#8B4158] pb-2" : ""}`}
+                className={`${pathName === "/top" ? "border-b-[2px] border-[#8B4158] pb-2" : ""}`}
                 src="/home-icon.svg"
                 alt="home"
                 width={30}
@@ -35,11 +35,11 @@ export function FooterNavItem() {
           </li>
 
           <li>
-            <Link href="/plofile">
+            <Link href="/profile">
               <Image
-                className={`${pathName === "/plofile" ? "border-b-[2px] border-[#8B4158] pb-2" : ""}`}
+                className={`${pathName === "/profile" ? "border-b-[2px] border-[#8B4158] pb-2" : ""}`}
                 src="/plofile-icon.svg"
-                alt="plofile"
+                alt="profile"
                 width={30}
                 height={26}
               />

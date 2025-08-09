@@ -24,22 +24,38 @@ export default function Map() {
           <div className="w-96 overflow-x-scroll mx-auto relative">
             <div className="flex">
               <div className="flex flex-col items-center">
-                <ShopCard ImageType="shop1" />
+                <ShopCard
+                  name="カフェ"
+                  genreName="カフェ"
+                  image="shop-demo.svg"
+                />
                 <p className="text-[40px] text-[#F6B741] border-b-2">1</p>
               </div>
 
               <div className="flex flex-col items-center ">
-                <ShopCard ImageType="shop1" />
+                <ShopCard
+                  name="スシロー"
+                  genreName="寿司"
+                  image="shop-demo.svg"
+                />
                 <p className="text-[40px] text-[#F6B741] border-b-2">2</p>
               </div>
 
               <div className="flex flex-col items-center">
-                <ShopCard ImageType="shop1" />
+                <ShopCard
+                  name="shop1"
+                  genreName="カフェ"
+                  image="shop-demo.svg"
+                />
                 <p className="text-[40px] text-[#F6B741] border-b-2">3</p>
               </div>
 
               <div className="flex flex-col items-center">
-                <ShopCard ImageType="shop1" />
+                <ShopCard
+                  name="shop1"
+                  genreName="カフェ"
+                  image="shop-demo.svg"
+                />
                 <p className="text-[40px] text-[#F6B741] border-b-2">4</p>
               </div>
             </div>
