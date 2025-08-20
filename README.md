@@ -1,7 +1,8 @@
 # 2025夏TechJam制作物　 <img src="next-app/public/logo.png"> <img src="next-app/public/text.png">
 ## アプリケーション概要
 地元各務原の飲食店をPRするためのwebアプリ <br>
-ユーザーが店舗情報を作っていき自分たちで盛り上げていくアプリになります
+ユーザーが店舗情報を作っていき自分たちで盛り上げていくアプリになります <br>
+制作期間　6日
 ### アプリ名
  <img src="next-app/public/text.png" width="150px"> <br>
 各務原の呼び方の一つみっぱらと空きっ腹をかけたネーミングとなってます
